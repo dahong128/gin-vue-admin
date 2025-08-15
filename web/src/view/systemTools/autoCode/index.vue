@@ -307,6 +307,7 @@
               </template>
               <el-select
                 v-model="form.businessDB"
+                clearable
                 placeholder="选择业务库"
                 class="w-full"
               >
@@ -696,7 +697,7 @@
                 style="width: 100%"
                 placeholder="请选择字段查询条件"
                 clearable
-                :disabled="row.fieldType !== 'json' || row.disabled"
+                :disabled="row.fieldType === 'json' || row.disabled"
               >
                 <el-option
                   v-for="item in typeSearchOptions"
@@ -1540,15 +1541,6 @@
     }
   }
   init()
-
-  watch(
-    () => route.params.id,
-    () => {
-      if (route.name === 'autoCodeEdit') {
-        init()
-      }
-    }
-  )
 
   watch(()=>form.value.generateServer,()=>{
     if(!form.value.generateServer){
